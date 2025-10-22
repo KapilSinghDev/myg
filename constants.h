@@ -27,7 +27,7 @@
 #define secure "secure" // this means only the root user can access it no one else and if second argument any branch name is give it will secure and lock that instead
 
 // default branches
-#define default "production"
-#define standby "development"
+#define default_branch "production"
+#define standby_branch "development"
 
 #endif
