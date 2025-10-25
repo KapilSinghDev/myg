@@ -6,28 +6,41 @@
 #include "../constants.h"
 using namespace std;
 namespace fs = std::filesystem;
-
 class Initialise
 {
 private:
     string branch;
+    void maintain_Current_Branch(string current)
+    {
+        this->branch = current;
+        string logs = "ref: refs/heads/" + branch;
+        ofstream(ROOT_HEAD_FILE) << logs << endl;
+    }
     void init()
     {
-        cout << "initiallised branch ->" << branch << endl;
+        cout << "initiallised myg tracking" << endl;
         fs::create_directories(ROOT_DIR);
         fs::create_directories(ROOT_OBJECTS);
         fs::create_directories(ROOT_REF);
-        fs::create_directories(ROOT_SUB_HEAD);
-        string logs = "ref: refs/heads/" + branch;
-        ofstream(ROOT_HEAD_FILE) << logs << endl;
+        ofstream(ROOT_UNTRACK_FILE);
         return;
     }
 
 public:
-    Initialise(string branch)
+    Initialise()
     {
-        this->branch = branch;
         init();
+    }
+    void create_branch(string branch)
+    {
+        // all the branches are stored in side ref directory
+
+        this->branch = branch;
+        string branch_Path = ROOT_REF + this->branch;
+        ofstream outputfile(branch_Path);
+        maintain_Current_Branch(branch);
+        cout << "created a new branch ->" << branch_Path << endl;
+        return;
     }
 };
 

@@ -4,15 +4,17 @@
 // directory paths
 #define ROOT_DIR ".myg"
 #define ROOT_OBJECTS ".myg/objects"
-#define ROOT_REF ".myg/refs"
+#define ROOT_REF ".myg/refs/"
 #define ROOT_SUB_HEAD ".myg/refs/heads"
 
 // directory files
-#define ROOT_HEAD_FILE ".myg/HEAD"
+#define ROOT_HEAD_FILE ".myg/head"
+// this file will keep record of untracked files
+#define ROOT_UNTRACK_FILE ".myg/ignore"
 
 // user commands
 #define start "start"             // creates a new directory if a second argument is given then that will be the default branch
-#define shootoff "shootoff"       // creates a new branch
+#define shootoff "shootoff"       // creates a new branch from current branch
 #define lock "lock"               // moves to a particular branch
 #define splash "splash"           // to merge
 #define bay "bay"                 // lists all the branches
@@ -22,6 +24,7 @@
 #define release "release"         // to push the changes
 #define status "status"           // to check the staged files and code
 #define instruments "instruments" // to show and guide the user
+#define eject "eject"             // to delete the entire tracking
 
 // branch access
 #define secure "secure" // this means only the root user can access it no one else and if second argument any branch name is give it will secure and lock that instead
