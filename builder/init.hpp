@@ -31,16 +31,25 @@ public:
     {
         init();
     }
+    void get_current_branch()
+    {
+        cout << "On branch -> " << this->branch;
+        return;
+    }
     void create_branch(string branch)
     {
-        // all the branches are stored in side ref directory
-
         this->branch = branch;
         string branch_Path = ROOT_REF + this->branch;
         ofstream outputfile(branch_Path);
         maintain_Current_Branch(branch);
         cout << "created a new branch ->" << branch_Path << endl;
         return;
+    }
+    void delete_current_branch(string name)
+    {
+    }
+    void get_status()
+    {
     }
 };
 

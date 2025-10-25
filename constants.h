@@ -3,7 +3,7 @@
 
 // directory paths
 #define ROOT_DIR ".myg"
-#define ROOT_OBJECTS ".myg/objects"
+#define ROOT_OBJECTS ".myg/objects/"
 #define ROOT_REF ".myg/refs/"
 #define ROOT_SUB_HEAD ".myg/refs/heads"
 
