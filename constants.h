@@ -11,6 +11,7 @@
 #define ROOT_HEAD_FILE ".myg/head"
 // this file will keep record of untracked files
 #define ROOT_UNTRACK_FILE ".myg/ignore"
+#define ROOT_INDEX_FILE ".myg/index"
 
 // user commands
 #define start "start"             // creates a new directory if a second argument is given then that will be the default branch
@@ -25,7 +26,7 @@
 #define status "status"           // to check the staged files and code
 #define instruments "instruments" // to show and guide the user
 #define eject "eject"             // to delete the entire tracking
-
+#define show "show"               // to check current branch
 // branch access
 #define secure "secure" // this means only the root user can access it no one else and if second argument any branch name is give it will secure and lock that instead
 

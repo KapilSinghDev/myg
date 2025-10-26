@@ -44,6 +44,15 @@ int main(int argc, char *argv[])
         string mount_file_path = argv[2];
         Tracker trace(mount_file_path);
     }
+    else if (command == shootoff)
+    {
+        string new_branch = argv[2];
+        initialise.create_branch(new_branch); // current branch is automatically maintained in this function
+    }
+    else if (command == show)
+    {
+        initialise.get_current_branch();
+    }
     else
     {
         cout << "no such command exists" << endl;

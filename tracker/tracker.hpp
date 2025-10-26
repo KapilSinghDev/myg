@@ -12,6 +12,7 @@ class Tracker
 {
 private:
     string path;
+    string filehash;
     bool track()
     {
         return fs::exists(path) ? true : false;
@@ -35,17 +36,24 @@ private:
         buffer << inputfile.rdbuf();
         string content = buffer.str();
         string blobData = "blob " + to_string(content.length()) + string(1, '\0') + content;
-        // calculate a hash
         string hashstring = calculateSHA1("blob " + to_string(content.length()) + string(1, '\0') + content);
+        this->filehash = hashstring;
         cout << hashstring << endl;
-        // strip first two characters open a sub directory in objects and store the rest in that sub directory
         string object_sub_directory = hashstring.substr(0, 2);
         string hash_object = hashstring.substr(2);
-        // search the directory , subdirectory and create a file named hash object and put the entire hash in it
-        // when the file is inserted write the whole hash string
         fs::create_directory(ROOT_OBJECTS + object_sub_directory + "/");
         ofstream(ROOT_OBJECTS + object_sub_directory + "/" + hash_object) << blobData;
-        cout << " file traced : success " << endl;
+        return;
+    }
+    void index_log()
+    {
+        ofstream of;
+        of.open(ROOT_INDEX_FILE, ios::app); // Add ios::app!
+        if (of)
+        {
+            of << path << " " << filehash << endl;
+            of.close();
+        }
         return;
     }
 
@@ -56,6 +64,8 @@ public:
         if (track())
         {
             save_file();
+            index_log();
+            cout << " file traced : success " << endl;
         }
         else
         {

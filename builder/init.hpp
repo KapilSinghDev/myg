@@ -23,17 +23,25 @@ private:
         fs::create_directories(ROOT_OBJECTS);
         fs::create_directories(ROOT_REF);
         ofstream(ROOT_UNTRACK_FILE);
+        ofstream(ROOT_INDEX_FILE);
         return;
     }
 
 public:
     Initialise()
     {
-        init();
+        if (!fs::exists(".myg"))
+        {
+            init();
+        }
     }
     void get_current_branch()
     {
-        cout << "On branch -> " << this->branch;
+        // read from head file
+        ifstream inputfile(ROOT_HEAD_FILE);
+        stringstream buffer;
+        buffer << inputfile.rdbuf();
+        cout << "Current branch - > " << buffer.str() << endl;
         return;
     }
     void create_branch(string branch)
