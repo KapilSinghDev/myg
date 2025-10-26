@@ -13,12 +13,11 @@ private:
     void maintain_Current_Branch(string current)
     {
         this->branch = current;
-        string logs = "ref: refs/heads/" + branch;
+        string logs = "ref: refs/heads/" + branch + " -> ";
         ofstream(ROOT_HEAD_FILE) << logs << endl;
     }
     void init()
     {
-        cout << "initiallised myg tracking" << endl;
         fs::create_directories(ROOT_DIR);
         fs::create_directories(ROOT_OBJECTS);
         fs::create_directories(ROOT_REF);

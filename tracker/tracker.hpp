@@ -5,6 +5,7 @@
 #include <openssl/sha.h>
 #include <string>
 #include "../constants.h"
+#include "../commiter/commiter.hpp"
 namespace fs = std::filesystem;
 using namespace std;
 
@@ -17,18 +18,7 @@ private:
     {
         return fs::exists(path) ? true : false;
     }
-    string calculateSHA1(const string &data)
-    {
-        unsigned char hash[SHA_DIGEST_LENGTH];
-        SHA1((unsigned char *)data.c_str(), data.length(), hash);
 
-        stringstream ss;
-        for (int i = 0; i < SHA_DIGEST_LENGTH; i++)
-        {
-            ss << hex << setw(2) << setfill('0') << (int)hash[i];
-        }
-        return ss.str();
-    }
     void save_file()
     {
         ifstream inputfile(path);
