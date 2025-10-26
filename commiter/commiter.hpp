@@ -54,7 +54,17 @@ void commit_head_log(string commit_user_message) // this fucntion is called manu
     //  AMD COMMIT MESSAGE AS CONTENT
     // AND THEN UPDATES THE HEAD FILE
 
-    ofstream(ROOT_HEAD_FILE) << updated_content << final_commit_hash; // updating the commit hash to the head file
+    // read the current branch from head
+    ifstream current_head(ROOT_HEAD_FILE);
+    stringstream current_head_stream;
+    current_head_stream << current_head.rdbuf();
+    string current_head_branch = current_head_stream.str();
+    current_head_branch = current_head_branch.substr(16); // the actual branch name starts at index 16 refer connstant  ROOT_HEAD
+    // open the file named with current branch if it does not exits
+    // OPEN SUBDIRECTORY WITH CURRENT HEAD BRANCH
+    string current_ref_branch_directory = ROOT_SUB_HEAD + current_head_branch;
+    fs::create_directories(current_ref_branch_directory);
+    ofstream(current_ref_branch_directory) << updated_content << final_commit_hash; // updating the commit hash to the head file
     cout << "----------FILE SUCCESSFULLY COMMITED----------" << endl;
     return;
 }

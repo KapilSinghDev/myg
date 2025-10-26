@@ -13,7 +13,7 @@ private:
     void maintain_Current_Branch(string current)
     {
         this->branch = current;
-        string logs = "ref: refs/heads/" + branch + " -> ";
+        string logs = "ref: refs/heads/" + branch; // branch name starts at index 16
         ofstream(ROOT_HEAD_FILE) << logs << endl;
     }
     void init()
