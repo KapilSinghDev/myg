@@ -155,4 +155,18 @@ void commit_head_log(string commit_user_message)
          << final_commit_hash.substr(0, 7) << " "
          << commit_user_message << endl;
 }
+
+void get_all_branches()
+{
+    fs::path branch_store_direcotry = ROOT_REF;
+    if (fs::exists(branch_store_direcotry) && fs::is_directory(branch_store_direcotry))
+    {
+        for (auto it : fs::directory_iterator(branch_store_direcotry))
+        {
+            string branch_directory = it.path();
+            cout << branch_directory.substr(10) << endl; // using substring becuase it prints entire path from root and we need only the branch name
+        }
+    }
+    return;
+}
 #endif

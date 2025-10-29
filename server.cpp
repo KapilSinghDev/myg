@@ -97,6 +97,11 @@ int main(int argc, char *argv[])
             cout << (!fs::exists(ROOT_DIR) ? "tracker removed successfully" : " Error while untracking : Possibly myg was never initiallised") << endl;
         }
     }
+    else if (command == bay)
+    {
+        cout << "These are the code branches" << endl;
+        get_all_branches();
+    }
     else
     {
         cout << "no such command exists" << endl;
